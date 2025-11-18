@@ -2,75 +2,10 @@
 <html>
 <head>
     <title>(ง ͡ʘ ͜ʖ ͡ʘ)ง</title>
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: black;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        #playArea img {
-            width: 200px;
-            cursor: pointer;
-        }
-
-        #theimg img {
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-            display: block;
-        }
-
-        #refresh {
-            position: fixed;
-            bottom: 20px;
-            width: 100%;
-            text-align: center;
-            color: white;
-            font-size: 20px;
-            display: none;
-        }
-    </style>
-
-    <script>
-        let intervalId;
-
-        function startScare() {
-            const playArea = document.getElementById("playArea");
-            const imgDiv = document.getElementById("theimg");
-            const audio = document.getElementById("audio");
-
-            playArea.style.display = "none";
-            imgDiv.style.display = "block";
-
-            const fs = document.documentElement;
-            if (fs.requestFullscreen) fs.requestFullscreen();
-            else if (fs.webkitRequestFullscreen) fs.webkitRequestFullscreen();
-            else if (fs.mozRequestFullScreen) fs.mozRequestFullScreen();
-
-            audio.loop = true;
-            audio.play().catch(() => {
-                console.log("Trình duyệt chặn autoplay.");
-            });
-
-            let isWhite = false;
-            intervalId = setInterval(() => {
-                document.body.style.background = isWhite ? "black" : "white";
-                isWhite = !isWhite;
-            }, 100);
-
-            setTimeout(() => {
-                document.getElementById("refresh").style.display = "block";
-            }, 2000);
-        }
-    </script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 
 <body>
