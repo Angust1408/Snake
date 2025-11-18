@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>(ง ͡ʘ ͜ʖ ͡ʘ)ง</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-</head>
-
 <body>
-
     <div id="playArea">
-        <img src="images (4).png" onclick="startScare()">
+        <img src="play.png" id="playBtn">
     </div>
 
     <div id="theimg" style="display:none;">
@@ -20,9 +9,34 @@
 
     <audio id="audio" src="scream2.mp3"></audio>
 
-    <div id="refresh">
-        <b>haha<br>...</b>
-    </div>
+    <div id="refresh" style="display:none;">haha...</div>
 
+    <script>
+        const playBtn = document.getElementById("playBtn");
+        playBtn.addEventListener("click", () => {
+            const imgDiv = document.getElementById("theimg");
+            const audio = document.getElementById("audio");
+            document.getElementById("playArea").style.display = "none";
+            imgDiv.style.display = "block";
+
+            // fullscreen
+            const fs = document.documentElement;
+            if (fs.requestFullscreen) fs.requestFullscreen();
+
+            // play audio
+            audio.loop = true;
+            audio.play();
+
+            // nhấp nháy
+            let isWhite = false;
+            setInterval(() => {
+                document.body.style.background = isWhite ? "black" : "white";
+                isWhite = !isWhite;
+            }, 100);
+
+            setTimeout(() => {
+                document.getElementById("refresh").style.display = "block";
+            }, 2000);
+        });
+    </script>
 </body>
-</html>
