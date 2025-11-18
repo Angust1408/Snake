@@ -1,42 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Scare</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
-    <div id="playArea">
-        <img src="play.png" id="playBtn">
-    </div>
 
-    <div id="theimg" style="display:none;">
-        <img src="scare.jpg">
-    </div>
+    <!-- Nút Play -->
+    <img id="playBtn" src="play.png" alt="Play">
 
+    <!-- Ảnh hù -->
+    <img id="scareImg" src="scare.jpg" alt="Scare">
+
+    <!-- Audio -->
     <audio id="audio" src="scream2.mp3"></audio>
 
-    <div id="refresh" style="display:none;">haha...</div>
+    <!-- Chữ hiện sau -->
+    <div id="refresh">haha...</div>
 
-    <script>
-        const playBtn = document.getElementById("playBtn");
-        playBtn.addEventListener("click", () => {
-            const imgDiv = document.getElementById("theimg");
-            const audio = document.getElementById("audio");
-            document.getElementById("playArea").style.display = "none";
-            imgDiv.style.display = "block";
-
-            // fullscreen
-            const fs = document.documentElement;
-            if (fs.requestFullscreen) fs.requestFullscreen();
-
-            // play audio
-            audio.loop = true;
-            audio.play();
-
-            // nhấp nháy
-            let isWhite = false;
-            setInterval(() => {
-                document.body.style.background = isWhite ? "black" : "white";
-                isWhite = !isWhite;
-            }, 100);
-
-            setTimeout(() => {
-                document.getElementById("refresh").style.display = "block";
-            }, 2000);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
+</html>
