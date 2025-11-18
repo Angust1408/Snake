@@ -50,24 +50,22 @@
             playArea.style.display = "none";
             imgDiv.style.display = "block";
 
-            // fullscreen
             const fs = document.documentElement;
             if (fs.requestFullscreen) fs.requestFullscreen();
             else if (fs.webkitRequestFullscreen) fs.webkitRequestFullscreen();
             else if (fs.mozRequestFullScreen) fs.mozRequestFullScreen();
 
-            // play audio
             audio.loop = true;
-            audio.play();
+            audio.play().catch(() => {
+                console.log("Trình duyệt chặn autoplay.");
+            });
 
-            // flashing
             let isWhite = false;
             intervalId = setInterval(() => {
                 document.body.style.background = isWhite ? "black" : "white";
                 isWhite = !isWhite;
             }, 100);
 
-            // hiện chữ haha
             setTimeout(() => {
                 document.getElementById("refresh").style.display = "block";
             }, 2000);
@@ -78,7 +76,6 @@
 <body>
 
     <div id="playArea">
-        <!-- Bạn để icon play tuỳ ý, demo để play.png -->
         <img src="images (4).png" onclick="startScare()">
     </div>
 
@@ -92,35 +89,5 @@
         <b>haha<br>...</b>
     </div>
 
-</body>
-</html>            else if (fs.mozRequestFullScreen) fs.mozRequestFullScreen();
-
-            // nhấp nháy trắng-đen liên tục
-            let isWhite = false;
-            intervalId = setInterval(() => {
-                document.body.style.background = isWhite ? "black" : "white";
-                isWhite = !isWhite;
-            }, 100); // 100ms nhấp nháy, bạn có thể tăng/giảm tốc độ
-
-            // hiện dòng refresh
-            setTimeout(() => {
-                document.getElementById("refresh").style.display = "block";
-            }, 2000);
-        }
-
-        window.onload = startScare;
-    </script>
-</head>
-
-<body>
-    <div id="theimg" style="display:none;">
-        <img src="scare.jpg">
-    </div>
-
-    <audio id="audio" src="scream2.mp3"></audio>
-
-    <div id="refresh">
-        <b>haha<br>...</b>
-    </div>
 </body>
 </html>
