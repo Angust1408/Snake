@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>(ง ͡ʘ ͜ʖ ͡ʘ)ง</title>
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: black;
+            overflow: hidden;
+        }
+
+        #theimg img {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            display: block;
+        }
+
+        #refresh {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            display: none;
+        }
+    </style>
+
+    <script>
+        let intervalId;
+
+        function startScare() {
+            const imgDiv = document.getElementById("theimg");
+            const audio = document.getElementById("audio");
+
+            // hiện ảnh hù
+            imgDiv.style.display = "block";
+
+            // phát âm thanh lặp liên tục
+            audio.loop = true;
+            audio.play();
+
+            // fullscreen
+            const fs = document.documentElement;
+            if (fs.requestFullscreen) fs.requestFullscreen();
+            else if (fs.webkitRequestFullscreen) fs.webkitRequestFullscreen();
+            else if (fs.mozRequestFullScreen) fs.mozRequestFullScreen();
+
+            // nhấp nháy trắng-đen liên tục
+            let isWhite = false;
+            intervalId = setInterval(() => {
+                document.body.style.background = isWhite ? "black" : "white";
+                isWhite = !isWhite;
+            }, 100); // 100ms nhấp nháy, bạn có thể tăng/giảm tốc độ
+
+            // hiện dòng refresh
+            setTimeout(() => {
+                document.getElementById("refresh").style.display = "block";
+            }, 2000);
+        }
+
+        window.onload = startScare;
+    </script>
+</head>
+
+<body>
+    <div id="theimg" style="display:none;">
+        <img src="scare.jpg">
+    </div>
+
+    <audio id="audio" src="scream2.mp3"></audio>
+
+    <div id="refresh">
+        <b>haha<br>...</b>
+    </div>
+</body>
+</html>
