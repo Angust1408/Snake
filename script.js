@@ -13,7 +13,7 @@ playBtn.addEventListener("click", () => {
     }
 
     // Play 1 lần (file đã nối 2 lần)
-    audio.src = "scream2x.mp3";
+    audio.src = "scream2.mp3";
     audio.play().catch(err => console.log("Audio không phát được:", err));
 
     // Nhấp nháy nền
