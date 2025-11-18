@@ -12,23 +12,9 @@ playBtn.addEventListener("click", () => {
         document.documentElement.requestFullscreen().catch(err => console.log(err));
     }
 
-    let playTimes = 0;
-
-    function playAudioTwice() {
-        if (playTimes >= 2) return;
-        playTimes++;
-
-        audio.currentTime = 0;
-        audio.play().catch(err => console.log("Audio không phát được:", err));
-
-        audio.onended = () => {
-            if (playTimes < 2) {
-                playAudioTwice(); // play lần 2
-            }
-        };
-    }
-
-    playAudioTwice(); // bắt đầu play 2 lần liên tiếp
+    // Play 1 lần (file đã nối 2 lần)
+    audio.src = "scream2x.mp3";
+    audio.play().catch(err => console.log("Audio không phát được:", err));
 
     // Nhấp nháy nền
     let isWhite = false;
@@ -40,8 +26,6 @@ playBtn.addEventListener("click", () => {
     // Hiện chữ haha sau 2 giây
     setTimeout(() => refresh.style.display = "block", 2000);
 
-    // Dừng nhấp nháy sau khi play xong 2 lần
-    audio.onended = () => {
-        if (playTimes >= 2) clearInterval(flashInterval);
-    };
+    // Dừng nhấp nháy khi audio kết thúc
+    audio.onended = () => clearInterval(flashInterval);
 });
