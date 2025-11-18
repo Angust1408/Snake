@@ -10,19 +10,23 @@ playBtn.addEventListener("click", () => {
 
     // Fullscreen
     if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
+        document.documentElement.requestFullscreen().catch(err => {
+            console.log("Fullscreen không được:", err);
+        });
     }
 
     // Audio
     audio.loop = true;
-    audio.play();
+    audio.play().catch(err => {
+        console.log("Audio không phát được:", err);
+    });
 
     // Nhấp nháy nền
     let isWhite = false;
     setInterval(() => {
         document.body.style.background = isWhite ? "black" : "white";
         isWhite = !isWhite;
-    }, 200); // 200ms dịu mắt hơn
+    }, 200);
 
     // Hiện chữ haha sau 2 giây
     setTimeout(() => {
