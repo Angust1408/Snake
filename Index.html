@@ -10,6 +10,15 @@
             padding: 0;
             background: black;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #playArea img {
+            width: 200px;
+            cursor: pointer;
         }
 
         #theimg img {
@@ -34,21 +43,57 @@
         let intervalId;
 
         function startScare() {
+            const playArea = document.getElementById("playArea");
             const imgDiv = document.getElementById("theimg");
             const audio = document.getElementById("audio");
 
-            // hiện ảnh hù
+            playArea.style.display = "none";
             imgDiv.style.display = "block";
-
-            // phát âm thanh lặp liên tục
-            audio.loop = true;
-            audio.play();
 
             // fullscreen
             const fs = document.documentElement;
             if (fs.requestFullscreen) fs.requestFullscreen();
             else if (fs.webkitRequestFullscreen) fs.webkitRequestFullscreen();
             else if (fs.mozRequestFullScreen) fs.mozRequestFullScreen();
+
+            // play audio
+            audio.loop = true;
+            audio.play();
+
+            // flashing
+            let isWhite = false;
+            intervalId = setInterval(() => {
+                document.body.style.background = isWhite ? "black" : "white";
+                isWhite = !isWhite;
+            }, 100);
+
+            // hiện chữ haha
+            setTimeout(() => {
+                document.getElementById("refresh").style.display = "block";
+            }, 2000);
+        }
+    </script>
+</head>
+
+<body>
+
+    <div id="playArea">
+        <!-- Bạn để icon play tuỳ ý, demo để play.png -->
+        <img src="play.png" onclick="startScare()">
+    </div>
+
+    <div id="theimg" style="display:none;">
+        <img src="scare.jpg">
+    </div>
+
+    <audio id="audio" src="scream2.mp3"></audio>
+
+    <div id="refresh">
+        <b>haha<br>...</b>
+    </div>
+
+</body>
+</html>            else if (fs.mozRequestFullScreen) fs.mozRequestFullScreen();
 
             // nhấp nháy trắng-đen liên tục
             let isWhite = false;
